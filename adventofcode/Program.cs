@@ -21,7 +21,7 @@ foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes())
             solver.logger = log;
             try
             {
-                await solver.Init(await File.ReadAllLinesAsync($"Input/{solver.InFile}"));
+                await solver.Init((await File.ReadAllLinesAsync($"Input/{solver.InFile}")).Where(x=> !string.IsNullOrEmpty(x)).ToArray());
             }
             catch (Exception e)
             {
