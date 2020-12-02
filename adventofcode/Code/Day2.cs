@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+#pragma warning disable 1998
 
 namespace adventofcode.Code
 {
@@ -41,7 +39,7 @@ namespace adventofcode.Code
         }
 
 
-        public ILogger<ISolver> logger { get; set; }
+        public ILogger<ISolver> Logger { get; set; }
         public string InFile { get; } = "password-philosophy-2";
 
         public async Task Init(string[] data)
@@ -67,7 +65,7 @@ namespace adventofcode.Code
                 }
             }
 
-            logger.Log(LogLevel.Information, $"Found: {valid} marches in range of min max");
+            Logger.Log(LogLevel.Information, $"Found: {valid} marches in range of min max");
 
 
             var march = 0;
@@ -84,7 +82,7 @@ namespace adventofcode.Code
                 }
             }
 
-            logger.Log(LogLevel.Information, $"Found: {march} marches with min ^ max char marching");
+            Logger.Log(LogLevel.Information, $"Found: {march} marches with min ^ max char marching");
         }
     }
 }

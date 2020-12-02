@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using adventofcode;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 ILogger<ISolver> log = new ConLogger();
-foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes())
+foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes()!)
 {
     if (type.GetInterfaces().Any(x => x == typeof(ISolver)))
     {
@@ -18,7 +16,7 @@ foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes())
         {
             log.Log(LogLevel.Information, $" ## --- # {solver.GetType()} # --- ## ");
 
-            solver.logger = log;
+            solver.Logger = log;
             try
             {
                 await solver.Init((await File.ReadAllLinesAsync($"Input/{solver.InFile}")).Where(x=> !string.IsNullOrEmpty(x)).ToArray());
@@ -41,21 +39,24 @@ foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes())
 }
 
 
-class ConLogger : ILogger<ISolver>
+namespace adventofcode
 {
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
-        Func<TState, Exception, string> formatter)
+    internal class ConLogger : ILogger<ISolver>
     {
-        Console.WriteLine($"[{logLevel.ToString(),11}]: {state.ToString()}");
-    }
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
+            Func<TState, Exception, string> formatter)
+        {
+            Console.WriteLine($"[{logLevel.ToString(),11}]: {state.ToString()}");
+        }
 
-    public bool IsEnabled(LogLevel logLevel)
-    {
-        throw new NotImplementedException();
-    }
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            throw new NotImplementedException();
+        }
 
-    public IDisposable BeginScope<TState>(TState state)
-    {
-        throw new NotImplementedException();
+        public IDisposable BeginScope<TState>(TState state)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

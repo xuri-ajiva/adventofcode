@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+#pragma warning disable 1998
 
 namespace adventofcode.Code
 {
@@ -11,7 +11,7 @@ namespace adventofcode.Code
         private int[] numbers;
         private const int Magic = 2020;
 
-        public ILogger<ISolver> logger { get; set; }
+        public ILogger<ISolver> Logger { get; set; }
 
         public string InFile { get; } = "numbers-1";
 
@@ -35,14 +35,14 @@ namespace adventofcode.Code
                         if (fount.Contains(i * j * k)) continue;
 
                         fount.Add(i * j * k);
-                        logger.Log(LogLevel.Information, $"{i} * {j} * {k} = {i * j * k}");
+                        Logger.Log(LogLevel.Information, $"{i} * {j} * {k} = {i * j * k}");
                     }
 
                     if (i + j != Magic) continue;
                     if (fount.Contains(i * j)) continue;
 
                     fount.Add(i * j);
-                    logger.Log(LogLevel.Information, $"{i} * {j} = {i * j}");
+                    Logger.Log(LogLevel.Information, $"{i} * {j} = {i * j}");
                 }
             }
         }
