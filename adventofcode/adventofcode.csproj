@@ -3,13 +3,17 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>adventofcode_1</RootNamespace>
+        <RootNamespace>adventofcode</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="numbers-1">
+      <None Update="Input\numbers-1">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
