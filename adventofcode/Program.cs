@@ -17,14 +17,14 @@ foreach (var type in Assembly.GetAssembly(typeof(ISolver))?.GetTypes()!)
             log.Log(LogLevel.Information, $" ## --- # {solver.GetType()} # --- ## ");
 
             solver.Logger = log;
-            try
-            {
-                await solver.Init((await File.ReadAllLinesAsync($"Input/{solver.InFile}")).Where(x=> !string.IsNullOrEmpty(x)).ToArray());
-            }
+            /*try
+            {     */
+                await solver.Init(await File.ReadAllTextAsync($"Input/{solver.InFile}"));
+           /* }
             catch (Exception e)
             {
                 log.Log(LogLevel.Error, e, e.Message);
-            }
+            }    */
 
             try
             {

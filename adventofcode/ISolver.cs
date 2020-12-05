@@ -9,7 +9,7 @@ namespace adventofcode
         
         string InFile { get; }
 
-        Task Init(string[] data);
+        Task Init(string data);
 
         Task Run();
     }

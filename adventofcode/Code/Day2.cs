@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -42,9 +43,9 @@ namespace adventofcode.Code
         public ILogger<ISolver> Logger { get; set; }
         public string InFile { get; } = "password-philosophy-2";
 
-        public async Task Init(string[] data)
+        public async Task Init(string data)
         {
-            LayOuts = data.Select(LayOut.FromString).ToArray();
+            LayOuts = data.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(LayOut.FromString).ToArray();
         }
 
         public LayOut[] LayOuts { get; set; }

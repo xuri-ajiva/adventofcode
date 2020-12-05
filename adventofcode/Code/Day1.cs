@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -16,9 +17,9 @@ namespace adventofcode.Code
         public string InFile { get; } = "numbers-1";
 
 
-        public async Task Init(string[] data)
+        public async Task Init(string data)
         {
-            numbers = (data).Select(int.Parse).ToArray();
+            numbers = data.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
         }
 
         public async Task Run()
